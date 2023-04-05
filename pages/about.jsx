@@ -5,14 +5,20 @@ import profilePic from "../public/about/profilepic.jpeg";
 function about() {
   return (
     <div className="mx-2 ">
-      <h1 className=" font-bold uppercase text-3xl text-center my-[2rem] tracking-wider ">
+      <h1
+        className=" font-bold uppercase text-3xl text-center my-[2rem] tracking-wider
+                        lg:text-5xl lg:my-[4rem] "
+      >
         Meet raine{" "}
       </h1>
       <div className="flex flex-col md:flex-row mb-[1rem]">
-        <div className="md:w-[50%] flex justify-center items-center">
-          <Image priority className="w-[90%]" src={profilePic} />
+        <div
+          className="md:w-[50%] lg:w-[40%] flex justify-center items-center
+                        "
+        >
+          <Image priority className="w-[90%] lg:w-[70%]" src={profilePic} />
         </div>
-        <div className="md:w-[50%] md:text-left mt-[1rem] mx-4 tracking-wider text-center">
+        <div className="md:w-[50%] md:text-left lg:text-2xl lg:w-[60%] mt-[1rem] mx-4 tracking-wider text-center">
           <p>
             I am a current resident of Vancouver. I received a Bachelor of Fine
             Arts from Emily Carr University of Arts and Design. I use
