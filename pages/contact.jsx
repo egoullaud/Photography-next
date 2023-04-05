@@ -6,7 +6,10 @@ import Link from "next/link";
 function contact() {
   return (
     <div>
-      <h1 className=" font-bold uppercase text-3xl text-center my-[2rem] tracking-wider ">
+      <h1
+        className=" font-bold uppercase text-3xl text-center my-[2rem] tracking-wider 
+                        "
+      >
         work with me
       </h1>
       <div className="flex flex-col justify-center items-center">
