@@ -1,10 +1,14 @@
 import Head from "next/head";
 import Image from "next/image";
-
 import { gql } from "@apollo/client";
 import client from "../apolloClient";
+import { GrHeroku } from "react-icons/gr";
+import Galleries from "../components/overview/Galleries";
+import Hero from "../components/overview/Hero";
+import Services from "../components/overview/Services";
 
 export default function Home({ categories }) {
+  console.log(categories);
   return (
     <div>
       <Head>
@@ -13,13 +17,9 @@ export default function Home({ categories }) {
       </Head>
 
       <main>
-        <div c>
-          {categories.map((category) => (
-            <div key={category.id}>
-              <h3>{category.title}</h3>
-            </div>
-          ))}
-        </div>
+        <Hero />
+        <Services />
+        <Galleries categories={categories} />
       </main>
     </div>
   );
