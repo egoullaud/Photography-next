@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import photography from "../../public/services/photography.jpg";
+import videography from "../../public/services/videography6.jpg";
 
 import Cta from "../Cta";
 
@@ -18,14 +19,14 @@ function Services() {
           lg:w-[50%]
           xl:w-[35%] "
         >
-          <h3 className=" text-2xl font-bold pb-2  uppercase tracking-widest">
+          <Image src={photography} className=" object-cover h-52 w-64 " />
+          <h3 className="pt-2 text-2xl font-bold pb-2  uppercase tracking-widest">
             Photography
           </h3>
           <p className="w-[90%] text-center tracking-widest mt-4 mb-4">
             I offer a wide range of services, including events, shows,
             festivals, headshots, couple and family portraits.
           </p>
-          {/* <Image src={photography} className=" w-[100%] object-cover" /> */}
         </div>
 
         <div
@@ -34,7 +35,8 @@ function Services() {
           lg:w-[50%]
           xl:w-[40%]"
         >
-          <h3 className=" text-2xl font-bold pb-2  uppercase tracking-widest">
+          <Image src={videography} className=" object-cover h-52 w-64" />
+          <h3 className="pt-2 text-2xl font-bold pb-2  uppercase tracking-widest">
             Videography
           </h3>
           <p className="w-[90%] text-center tracking-widest">
