@@ -28,24 +28,24 @@ function NavBar() {
             <Link href="/about">about</Link>
           </li>
           <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
-            <Link href="/portraits">portraits</Link>
+            <Link href="/galleries/portraits">portraits</Link>
           </li>
 
           <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
-            <Link href="/events">events</Link>
+            <Link href="/galleries/events">events</Link>
           </li>
           <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
-            <Link href="/nature">nature</Link>
+            <Link href="/galleries/nature">nature</Link>
           </li>
           <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
-            <Link href="/architecture">architecture</Link>
+            <Link href="/galleries/architecture">architecture</Link>
           </li>
           <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
-            <Link href="/light">light</Link>
+            <Link href="/galleries/light">light</Link>
           </li>
 
           <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
-            <Link href="/videography">videography</Link>
+            <Link href="/galleries/videography">videography</Link>
           </li>
           <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
             <Link href="/contact">contact</Link>
