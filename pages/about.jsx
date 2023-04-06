@@ -13,10 +13,10 @@ function about() {
       </h1>
       <div className="flex flex-col md:flex-row mb-[1rem]">
         <div
-          className="md:w-[50%] lg:w-[40%] flex justify-center items-center
+          className="md:w-[50%] xl:w-[40%] flex justify-center items-center
                         "
         >
-          <Image priority className="w-[90%] lg:w-[70%]" src={profilePic} />
+          <Image priority className="w-[90%] xl:w-[70%]" src={profilePic} />
         </div>
         <div className="md:w-[50%] md:text-left lg:text-2xl lg:w-[60%] mt-[1rem] mx-4 tracking-wider text-center">
           <p>
