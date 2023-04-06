@@ -22,7 +22,11 @@ function Services() {
           lg:w-[50%]
           xl:w-[35%] "
         >
-          <Image src={photography} className=" object-cover h-52 w-64 " />
+          <Image
+            src={photography}
+            className=" object-cover h-52 w-64 "
+            alt="#"
+          />
           <h3 className="pt-2 text-2xl font-bold pb-2  uppercase tracking-widest">
             Photography
           </h3>
@@ -46,7 +50,11 @@ function Services() {
           lg:w-[50%]
           xl:w-[40%]"
         >
-          <Image src={videography} className=" object-cover h-52 w-64" />
+          <Image
+            src={videography}
+            className=" object-cover h-52 w-64"
+            alt="#"
+          />
           <h3 className="pt-2 text-2xl font-bold pb-2  uppercase tracking-widest">
             Videography
           </h3>

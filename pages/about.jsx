@@ -16,7 +16,12 @@ function about() {
           className="md:w-[50%] xl:w-[40%] flex justify-center items-center
                         "
         >
-          <Image priority className="w-[90%] xl:w-[70%]" src={profilePic} />
+          <Image
+            priority
+            className="w-[90%] xl:w-[70%]"
+            src={profilePic}
+            alt="#"
+          />
         </div>
         <div className="md:w-[50%] md:text-left lg:text-2xl lg:w-[60%] mt-[1rem] mx-4 tracking-wider text-center">
           <p>
