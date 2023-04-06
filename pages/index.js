@@ -3,9 +3,9 @@ import Image from "next/image";
 import { gql } from "@apollo/client";
 import client from "../apolloClient";
 import { GrHeroku } from "react-icons/gr";
-import Galleries from "../components/overview/Galleries";
-import Hero from "../components/overview/Hero";
-import Services from "../components/overview/Services";
+import Galleries from "../components/Galleries";
+import Hero from "../components/Hero";
+import Services from "../components/Services";
 
 export default function Home({ categories }) {
   console.log(categories);
