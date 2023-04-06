@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import photography from "../public/photography.jpg";
-import videography from "../public/videography6.jpg";
+import videographyServices from "../public/videography6.jpg";
 import arch from "../public/travel-hero.jpg";
 import events from "../public/events-hero.jpg";
 import light from "../public/light-hero.jpg";
@@ -80,7 +80,7 @@ export default function Home() {
           xl:w-[40%]"
             >
               <Image
-                src={videography}
+                src={videographyServices}
                 className=" object-cover h-52 w-64"
                 alt="#"
               />
