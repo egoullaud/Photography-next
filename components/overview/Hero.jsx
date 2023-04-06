@@ -4,12 +4,12 @@ import heroImg from "../../public/hero/hero-img.jpg";
 
 function Hero() {
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center  lg:mt-[5rem]">
       {/* Hero area */}
       <div
         className="flex justify-center items-center text-center m-4
                         md:text-xl md:mx-[2rem]
-                        lg:text-3xl lg:my-[2rem]"
+                        lg:text-3xl lg:mb-[5rem]"
       >
         <p className="italic tracking-wider">
           “When words become unclear, I shall focus with photographs. When
