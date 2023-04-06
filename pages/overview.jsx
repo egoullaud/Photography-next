@@ -1,7 +1,7 @@
 import React from "react";
-import Galleries from "@/components/overview/Galleries";
-import Hero from "@/components/overview/Hero";
-import Services from "@/components/overview/Services";
+import Galleries from "@/components/Galleries";
+import Hero from "@/components/Hero";
+import Services from "@/components/Services";
 
 export default function Overview() {
   return (
