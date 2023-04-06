@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import photography from "../../public/services/photography.jpg";
-import videography from "../../public/services/videography6.jpg";
+import photography from "../../public/photography.jpg";
+import videography from "../../public/videography6.jpg";
 import Cta from "../Cta";
 import Link from "next/link";
 

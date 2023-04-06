@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import profilePic from "../public/about/profilepic.jpeg";
+import profilePic from "../public/profilepic.jpeg";
 
 function about() {
   return (

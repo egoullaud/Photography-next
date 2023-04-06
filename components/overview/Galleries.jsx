@@ -1,12 +1,12 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import arch from "../../public/gallery/travel-hero.jpg";
-import events from "../../public/gallery/events-hero.JPG";
-import light from "../../public/gallery/light-hero.jpg";
-import nature from "../../public/gallery/nature-hero.JPG";
-import portraits from "../../public/gallery/portrait-hero.JPG";
-import videography from "../../public/gallery/music-video.jpg";
+import arch from "../../public/travel-hero.jpg";
+import events from "../../public/events-hero.JPG";
+import light from "../../public/light-hero.jpg";
+import nature from "../../public/nature-hero.JPG";
+import portraits from "../../public/portrait-hero.JPG";
+import videography from "../../public/music-video.jpg";
 
 function Galleries() {
   return (
