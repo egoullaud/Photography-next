@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
-function NavBar() {
+function NavBar({ categories }) {
   const [showMenu, setShowMenu] = useState(false);
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
   return (
-    <div className="mx-2 text-[#363636] mb-[1rem]">
-      <nav className="uppercase flex flex-col justify-center items-center border-b-2 border-[#1f1f1f] ">
+    <div className="mx-2 text-[#363636] mb-[1rem] border-b-2 border-[#363636]">
+      <nav>
         <div
-          className="text-center my-[2rem]
+          className="text-center my-[2rem] uppercase
                       md:my-[3rem]
                         lg:my-[4rem]"
         >
@@ -24,78 +24,36 @@ function NavBar() {
             </h2>
           </Link>
         </div>
-
         <ul className=" hidden lg:flex justify-center w-[100%] lg:text-xl">
-          <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
-            <Link href="/">overview</Link>
-          </li>
-          <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
-            <Link href="/about">about</Link>
-          </li>
-          <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
-            <Link href="/galleries/portraits">portraits</Link>
-          </li>
-
-          <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
-            <Link href="/galleries/events">events</Link>
-          </li>
-          <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
-            <Link href="/galleries/nature">nature</Link>
-          </li>
-          <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
-            <Link href="/galleries/architecture">architecture</Link>
-          </li>
-          <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
-            <Link href="/galleries/light">light</Link>
-          </li>
-
-          <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
-            <Link href="/galleries/videography">videography</Link>
-          </li>
-          <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
-            <Link href="/contact">contact</Link>
-          </li>
+          {categories?.map((category) => (
+            <li
+              className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4 uppercase"
+              key={category.id}
+            >
+              <Link href={`/galleries/${category.slug}`}>{category.title}</Link>
+            </li>
+          ))}
         </ul>
-
         {/* Mobile navigation */}
         <button
-          className="block lg:hidden uppercase"
+          className="block lg:hidden w-[12rem] text-center hover:bg-[#363636] text-xl tracking-wide hover:text-white hover:transition-all hover:duration-1000 p-2 px-4 uppercase mx-auto z-10"
           onClick={toggleMenu}
           aria-label="Menu"
         >
           Menu
         </button>
         {showMenu && (
-          <ul className="block lg:hidden w-full text-center">
-            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
-              <Link href="/">overview</Link>
-            </li>
-            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
-              <Link href="/about">about</Link>
-            </li>
-            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
-              <Link href="/galleries/portraits">portraits</Link>
-            </li>
-
-            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
-              <Link href="/galleries/events">events</Link>
-            </li>
-            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
-              <Link href="/galleries/nature">nature</Link>
-            </li>
-            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
-              <Link href="/galleries/architecture">architecture</Link>
-            </li>
-            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
-              <Link href="/galleries/light">light</Link>
-            </li>
-
-            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
-              <Link href="/galleries/videography">videography</Link>
-            </li>
-            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
-              <Link href="/contact">contact</Link>
-            </li>
+          <ul className=" lg:hidden flex flex-col justify-center items-center w-[100%] lg:text-xl">
+            {categories?.map((category) => (
+              <li
+                className="w-[12rem] text-center hover:bg-[#363636] text-xl tracking-wide hover:text-white hover:transition-all hover:duration-1000 p-2 px-4 uppercase"
+                key={category.id}
+              >
+                <Link href={`/galleries/${category.slug}`}>
+                  {category.title}
+                </Link>
+              </li>
+            ))}
           </ul>
         )}
       </nav>
