@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 
 function NavBar() {
+  const [showMenu, setShowMenu] = useState(false);
+
+  const toggleMenu = () => {
+    setShowMenu(!showMenu);
+  };
   return (
     <div className="mx-2 text-[#363636] mb-[1rem]">
       <nav className="uppercase flex flex-col justify-center items-center border-b-2 border-[#1f1f1f] ">
@@ -51,6 +56,48 @@ function NavBar() {
             <Link href="/contact">contact</Link>
           </li>
         </ul>
+
+        {/* Mobile navigation */}
+        <button
+          className="block lg:hidden uppercase"
+          onClick={toggleMenu}
+          aria-label="Menu"
+        >
+          Menu
+        </button>
+        {showMenu && (
+          <ul className="block lg:hidden w-full text-center">
+            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
+              <Link href="/">overview</Link>
+            </li>
+            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
+              <Link href="/about">about</Link>
+            </li>
+            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
+              <Link href="/galleries/portraits">portraits</Link>
+            </li>
+
+            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
+              <Link href="/galleries/events">events</Link>
+            </li>
+            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
+              <Link href="/galleries/nature">nature</Link>
+            </li>
+            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
+              <Link href="/galleries/architecture">architecture</Link>
+            </li>
+            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
+              <Link href="/galleries/light">light</Link>
+            </li>
+
+            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
+              <Link href="/galleries/videography">videography</Link>
+            </li>
+            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4">
+              <Link href="/contact">contact</Link>
+            </li>
+          </ul>
+        )}
       </nav>
     </div>
   );
