@@ -126,37 +126,8 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getServerSideProps(context) {
-  const { slug } = context.query;
-
-  if (slug === "about") {
-    return {
-      redirect: {
-        destination: "/about",
-        permanent: true,
-      },
-    };
-  }
-
-  if (slug === "contact") {
-    return {
-      redirect: {
-        destination: "/contact",
-        permanent: true,
-      },
-    };
-  }
-
-  if (slug === "overview") {
-    return {
-      redirect: {
-        destination: "/overview",
-        permanent: true,
-      },
-    };
-  }
-
-  // If the slug does not match any of the above, return the content as usual
+export async function getStaticProps({ params }) {
+  const { slug } = params;
   const { data } = await client.query({
     query: gql`
       query ImagesBySlug($slug: String!) {
@@ -183,37 +154,6 @@ export async function getServerSideProps(context) {
       images: data.images,
       category: data.images[0].category,
     },
+    revalidate: 86400,
   };
 }
-
-// export async function getStaticProps({ params }) {
-//   const { slug } = params;
-//   const { data } = await client.query({
-//     query: gql`
-//       query ImagesBySlug($slug: String!) {
-//         images(where: { category: { slug: $slug } }) {
-//           title
-//           id
-//           image {
-//             url
-//             height
-//             width
-//           }
-//           category {
-//             title
-//             id
-//           }
-//         }
-//       }
-//     `,
-//     variables: { slug },
-//   });
-
-//   return {
-//     props: {
-//       images: data.images,
-//       category: data.images[0].category,
-//     },
-//     revalidate: 86400,
-//   };
-// }
