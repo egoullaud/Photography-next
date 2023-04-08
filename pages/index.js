@@ -10,6 +10,7 @@ import nature from "../public/nature-hero.jpg";
 import portraits from "../public/portrait-hero.jpg";
 import videography from "../public/music-video.jpg";
 import heroImg from "../public/hero-img.jpg";
+import NavBar from "../components/NavBar";
 
 export default function Home() {
   return (
