@@ -1,10 +1,14 @@
 import React from "react";
 import Image from "next/image";
 import profilePic from "../public/profilepic.jpg";
+import NavBar from "../components/NavBar";
+import client from "../apolloClient";
+
+import { gql } from "@apollo/client";
 
 function about() {
   return (
-    <div className="mx-2 ">
+    <div>
       <h1
         className=" font-bold uppercase text-3xl text-center my-[2rem] tracking-wider
                         lg:text-5xl lg:my-[4rem] "
@@ -58,4 +62,3 @@ function about() {
 }
 
 export default about;
-about;

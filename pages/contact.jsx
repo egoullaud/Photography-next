@@ -3,7 +3,7 @@ import React from "react";
 import { GrFacebook, GrInstagram } from "react-icons/gr";
 import Link from "next/link";
 
-function contact() {
+export default function contact() {
   return (
     <div>
       <h1
@@ -55,5 +55,3 @@ function contact() {
     </div>
   );
 }
-
-export default contact;
