@@ -15,7 +15,7 @@ function Galleries() {
         Galleries
       </h3>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-2 px-2 py-4 pb-[5rem]">
-        <Link href="/galleries/architecture">
+        <Link href="/architecture">
           <div className="shadow-2xl ">
             <h4 className="uppercase text-xl text-center">Architecture</h4>
             <Image
@@ -25,7 +25,7 @@ function Galleries() {
             />
           </div>
         </Link>
-        <Link href="/galleries/events">
+        <Link href="/events">
           <div className="shadow-2xl">
             <h4 className="uppercase text-xl text-center">events</h4>
             <Image
@@ -35,7 +35,7 @@ function Galleries() {
             />
           </div>
         </Link>
-        <Link href="/galleries/nature">
+        <Link href="/nature">
           <div className="shadow-2xl">
             <h4 className="uppercase text-xl text-center">nature</h4>
             <Image
@@ -45,7 +45,7 @@ function Galleries() {
             />
           </div>
         </Link>
-        <Link href="/galleries/light">
+        <Link href="/light">
           <div className="shadow-2xl">
             <h4 className="uppercase text-xl text-center">light</h4>
             <Image
@@ -55,7 +55,7 @@ function Galleries() {
             />
           </div>
         </Link>
-        <Link href="/galleries/portraits">
+        <Link href="/portraits">
           <div className="shadow-2xl">
             <h4 className="uppercase text-xl text-center hover:scale-105 hover:transition-all hover:duration-1000">
               portraits
@@ -67,7 +67,7 @@ function Galleries() {
             />
           </div>
         </Link>
-        <Link href="/galleries/videography">
+        <Link href="/videography">
           <div className="shadow-2xl">
             <h4 className="uppercase text-xl text-center">videography</h4>
             <Image
