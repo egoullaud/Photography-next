@@ -25,6 +25,12 @@ function NavBar({ categories }) {
         </div>
         <div className=" hidden lg:flex justify-center lg:text-xl">
           <ul className=" hidden lg:flex justify-center lg:text-xl">
+            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4 uppercase">
+              <Link href="/overview">overview</Link>
+            </li>
+            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4 uppercase">
+              <Link href="/about">about</Link>
+            </li>
             {categories &&
               categories?.map((category) => (
                 <li
@@ -34,6 +40,9 @@ function NavBar({ categories }) {
                   <Link href={`/${category.slug}`}>{category.title}</Link>
                 </li>
               ))}
+            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4 uppercase">
+              <Link href="/contact">contact</Link>
+            </li>
           </ul>
         </div>
 
@@ -46,18 +55,26 @@ function NavBar({ categories }) {
           Menu
         </button>
         {showMenu && (
-          <div className=" lg:hidden flex flex-col justify-center items-center w-[100%] lg:text-xl">
-            <ul>
-              {categories?.map((category) => (
+          <ul className=" lg:hidden flex flex-col justify-center items-center w-[100%] lg:text-xl">
+            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4 uppercase w-[12rem] text-center">
+              <Link href="/overview">overview</Link>
+            </li>
+            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4 uppercase  w-[12rem] text-center">
+              <Link href="/about">about</Link>
+            </li>
+            {categories &&
+              categories?.map((category) => (
                 <li
-                  className="w-[12rem] text-center hover:bg-[#363636] text-xl tracking-wide hover:text-white hover:transition-all hover:duration-1000 p-2 px-4 uppercase"
+                  className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4 uppercase  w-[12rem] text-center"
                   key={category.id}
                 >
                   <Link href={`/${category.slug}`}>{category.title}</Link>
                 </li>
               ))}
-            </ul>
-          </div>
+            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4 uppercase  w-[12rem] text-center">
+              <Link href="/contact">contact</Link>
+            </li>
+          </ul>
         )}
       </nav>
     </div>
