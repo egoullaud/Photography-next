@@ -1,12 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import profilePic from "../public/profilepic.jpg";
-import NavBar from "../components/NavBar";
 import client from "../apolloClient";
-
 import { gql } from "@apollo/client";
 
-function about() {
+function about({ videos }) {
   return (
     <div>
       <h1
@@ -59,6 +57,29 @@ function about() {
       </div>
     </div>
   );
+}
+export async function getStaticProps() {
+  const { data } = await client.query({
+    query: gql`
+      {
+        videos(where: { category: { title_contains: "videography" } }) {
+          title
+          id
+          description {
+            html
+          }
+          embedUrl
+        }
+      }
+    `,
+  });
+
+  return {
+    props: {
+      videos: data.videos,
+    },
+    revalidate: 86400,
+  };
 }
 
 export default about;

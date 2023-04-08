@@ -2,8 +2,10 @@ import Form from "../components/Form";
 import React from "react";
 import { GrFacebook, GrInstagram } from "react-icons/gr";
 import Link from "next/link";
+import client from "../apolloClient";
+import { gql } from "@apollo/client";
 
-export default function contact() {
+export default function contact({ videos }) {
   return (
     <div>
       <h1
@@ -54,4 +56,28 @@ export default function contact() {
       </div>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const { data } = await client.query({
+    query: gql`
+      {
+        videos(where: { category: { title_contains: "videography" } }) {
+          title
+          id
+          description {
+            html
+          }
+          embedUrl
+        }
+      }
+    `,
+  });
+
+  return {
+    props: {
+      videos: data.videos,
+    },
+    revalidate: 86400,
+  };
 }
