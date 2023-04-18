@@ -1,13 +1,14 @@
 import React from "react";
 import DashboardHeader from "./DashboardHeader";
-import DashboardFooter from "./DashboardFooter";
 
-function DashboardLayout({ children }) {
+import DashboardAside from "./DashboardAside";
+
+function DashboardLayout({ children, categories }) {
   return (
     <>
       <DashboardHeader />
-      <main>{children}</main>
-      <DashboardFooter />
+      <DashboardAside categories={categories} />
+      <main className=" ml-[20%]">{children}</main>
     </>
   );
 }
