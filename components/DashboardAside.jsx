@@ -19,12 +19,9 @@ function DashboardAside({ categories }) {
         </li>
         {categories &&
           categories?.map((category) => (
-            <Link href={`/admin/edit/${category.slug}`}>
+            <Link key={category.id} href={`/admin/edit/${category.slug}`}>
               {" "}
-              <li
-                className="p-4 pl-10 text-lg border-b-2 border-white  hover:bg-white hover:text-[#363636] hover:transition-all hover:duration-500 ease-out duration-500"
-                key={category.id}
-              >
+              <li className="p-4 pl-10 text-lg border-b-2 border-white  hover:bg-white hover:text-[#363636] hover:transition-all hover:duration-500 ease-out duration-500">
                 {category.title}
               </li>
             </Link>
