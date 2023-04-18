@@ -25,22 +25,22 @@ function NavBar({ categories }) {
         </div>
         <div className=" hidden lg:flex justify-center lg:text-xl">
           <ul className=" hidden lg:flex justify-center lg:text-xl">
-            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4 uppercase">
+            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500 p-2 px-4 uppercase">
               <Link href="/overview">overview</Link>
             </li>
-            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4 uppercase">
+            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500 p-2 px-4 uppercase">
               <Link href="/about">about</Link>
             </li>
             {categories &&
               categories?.map((category) => (
                 <li
-                  className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4 uppercase"
+                  className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500 p-2 px-4 uppercase"
                   key={category.id}
                 >
                   <Link href={`/${category.slug}`}>{category.title}</Link>
                 </li>
               ))}
-            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4 uppercase">
+            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500 p-2 px-4 uppercase">
               <Link href="/contact">contact</Link>
             </li>
           </ul>
@@ -48,7 +48,7 @@ function NavBar({ categories }) {
 
         {/* Mobile navigation */}
         <button
-          className="block lg:hidden w-[12rem] text-center hover:bg-[#363636] text-xl tracking-wide hover:text-white hover:transition-all hover:duration-1000 p-2 px-4 uppercase mx-auto z-10"
+          className="block lg:hidden w-[12rem] text-center hover:bg-[#363636] text-xl tracking-wide hover:text-white hover:transition-all hover:duration-500 ease-out duration-500 p-2 px-4 uppercase mx-auto z-10"
           onClick={toggleMenu}
           aria-label="Menu"
         >
@@ -56,22 +56,22 @@ function NavBar({ categories }) {
         </button>
         {showMenu && (
           <ul className=" lg:hidden flex flex-col justify-center items-center w-[100%] lg:text-xl">
-            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4 uppercase w-[12rem] text-center">
+            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500 p-2 px-4 uppercase w-[12rem] text-center">
               <Link href="/overview">overview</Link>
             </li>
-            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4 uppercase  w-[12rem] text-center">
+            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500 p-2 px-4 uppercase  w-[12rem] text-center">
               <Link href="/about">about</Link>
             </li>
             {categories &&
               categories?.map((category) => (
                 <li
-                  className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4 uppercase  w-[12rem] text-center"
+                  className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500 p-2 px-4 uppercase  w-[12rem] text-center"
                   key={category.id}
                 >
                   <Link href={`/${category.slug}`}>{category.title}</Link>
                 </li>
               ))}
-            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 p-2 px-4 uppercase  w-[12rem] text-center">
+            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500 p-2 px-4 uppercase  w-[12rem] text-center">
               <Link href="/contact">contact</Link>
             </li>
           </ul>
