@@ -4,10 +4,11 @@ import { GrFacebook, GrInstagram } from "react-icons/gr";
 import Link from "next/link";
 import client from "../apolloClient";
 import { gql } from "@apollo/client";
+import Layout from "../components/Layout";
 
-export default function contact({ videos }) {
+export default function contact({ categories }) {
   return (
-    <div>
+    <Layout categories={categories}>
       <h1
         className=" font-bold uppercase text-3xl text-center my-[2rem] tracking-wider 
                         "
@@ -54,29 +55,27 @@ export default function contact({ videos }) {
           <p>raineg@gmail.com</p>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 }
 
 export async function getStaticProps() {
-  const { data } = await client.query({
+  const { data: categoriesData } = await client.query({
     query: gql`
-      {
-        videos(where: { category: { title_contains: "videography" } }) {
+      query Categories {
+        categories(orderBy: listOrder_ASC) {
           title
           id
-          description {
-            html
-          }
-          embedUrl
+          slug
         }
       }
     `,
   });
+  const categories = categoriesData.categories;
 
   return {
     props: {
-      videos: data.videos,
+      categories,
     },
     revalidate: 86400,
   };

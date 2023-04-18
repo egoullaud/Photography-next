@@ -5,36 +5,34 @@ import Galleries from "../components/Galleries";
 import client from "../apolloClient";
 
 import { gql } from "@apollo/client";
+import Layout from "../components/Layout";
 
-export default function Overview({ videos }) {
+export default function Overview({ categories }) {
   return (
-    <div>
+    <Layout categories={categories}>
       <Hero />
       <Services />
       <Galleries />
-    </div>
+    </Layout>
   );
 }
-
 export async function getStaticProps() {
-  const { data } = await client.query({
+  const { data: categoriesData } = await client.query({
     query: gql`
-      {
-        videos(where: { category: { title_contains: "videography" } }) {
+      query Categories {
+        categories(orderBy: listOrder_ASC) {
           title
           id
-          description {
-            html
-          }
-          embedUrl
+          slug
         }
       }
     `,
   });
+  const categories = categoriesData.categories;
 
   return {
     props: {
-      videos: data.videos,
+      categories,
     },
     revalidate: 86400,
   };
