@@ -8,7 +8,7 @@ function DashboardAside({ categories }) {
         <h1 className="text-4xl p-2">Welcome, Raine</h1>
       </div>
       <ul className="flex flex-col">
-        <Link href="/admin/upload">
+        <Link href="/admin/">
           {" "}
           <li className="p-4 pl-2 text-lg border-b-2 border-white  hover:bg-white hover:text-[#363636] hover:transition-all hover:duration-500 ease-out duration-500">
             Upload Photos
