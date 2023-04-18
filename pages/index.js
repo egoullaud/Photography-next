@@ -14,9 +14,9 @@ import Layout from "../components/Layout";
 import client from "../apolloClient";
 import { gql } from "@apollo/client";
 
-function home({ categoriesData }) {
+function home({ categories }) {
   return (
-    <Layout categories={categoriesData?.categories}>
+    <Layout categories={categories}>
       <div>
         <Head>
           <title>Raine Gauthier Photography</title>
@@ -191,8 +191,8 @@ function home({ categoriesData }) {
 }
 export default home;
 
-home.getInitialProps = async () => {
-  const { data } = await client.query({
+export async function getStaticProps() {
+  const { data: categoriesData } = await client.query({
     query: gql`
       query Categories {
         categories(orderBy: listOrder_ASC) {
@@ -203,6 +203,12 @@ home.getInitialProps = async () => {
       }
     `,
   });
+  const categories = categoriesData.categories;
 
-  return { categoriesData: data };
-};
+  return {
+    props: {
+      categories,
+    },
+    revalidate: 86400,
+  };
+}
