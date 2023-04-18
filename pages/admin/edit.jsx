@@ -1,19 +1,22 @@
 import { gql } from "@apollo/client";
 import React, { useState } from "react";
+import DashboardLayout from "../../components/DashboardLayout";
 
 function edit() {}
 return (
-  <div className="flex">
-    <div className="w-[20%]">Aside</div>
-    <div className="flex flex-col items-center justify-center">
-      <h2 className="uppercase text-3xl text-center mt-[2rem] tracking-wider">
-        Edit Galleries
-      </h2>
+  <DashboardLayout>
+    <div className="flex">
+      <div className="w-[20%]">Aside</div>
+      <div className="flex flex-col items-center justify-center">
+        <h2 className="uppercase text-3xl text-center mt-[2rem] tracking-wider">
+          Edit Galleries
+        </h2>
+      </div>
     </div>
-  </div>
+  </DashboardLayout>
 );
 
-export default edit;
+export default DashboardLayout(edit);
 
 // Mutations
 
