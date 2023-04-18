@@ -92,7 +92,7 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default function editGallery({
+export default function EditGallery({
   images,
   category,
   categories,
