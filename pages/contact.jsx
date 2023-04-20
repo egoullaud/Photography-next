@@ -3,7 +3,6 @@ import React from "react";
 import { GrFacebook, GrInstagram } from "react-icons/gr";
 import Link from "next/link";
 import client from "../apolloClient";
-import { gql } from "@apollo/client";
 import Layout from "../components/Layout";
 
 export default function contact({ categories }) {
@@ -61,15 +60,7 @@ export default function contact({ categories }) {
 
 export async function getStaticProps() {
   const { data: categoriesData } = await client.query({
-    query: gql`
-      query Categories {
-        categories(orderBy: listOrder_ASC) {
-          title
-          id
-          slug
-        }
-      }
-    `,
+    query: CATEGORIES_QUERY,
   });
   const categories = categoriesData.categories;
 
