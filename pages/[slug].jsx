@@ -1,20 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import React from "react";
 import client from "../apolloClient";
-import { gql } from "@apollo/client";
 import Image from "next/image";
 import Layout from "../components/Layout";
+import {
+  CATEGORIES_QUERY,
+  IMAGES_BY_SLUG,
+  VIDEOS_BY_CAT,
+} from "../services/queries";
 
 export async function getStaticPaths() {
   const { data } = await client.query({
-    query: gql`
-      {
-        categories {
-          slug
-          title
-        }
-      }
-    `,
+    query: CATEGORIES_QUERY,
   });
 
   console.log(data);
@@ -28,51 +25,16 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const { slug } = params;
   const { data: imagesData } = await client.query({
-    query: gql`
-      query ImagesBySlug($slug: String!) {
-        images(where: { category: { slug: $slug } }) {
-          title
-          id
-          image {
-            url
-            height
-            width
-          }
-          category {
-            title
-            id
-          }
-        }
-      }
-    `,
+    query: IMAGES_BY_SLUG,
     variables: { slug },
   });
 
   const { data: videosData } = await client.query({
-    query: gql`
-      {
-        videos(where: { category: { title_contains: "videography" } }) {
-          title
-          id
-          description {
-            html
-          }
-          embedUrl
-        }
-      }
-    `,
+    query: VIDEOS_BY_CAT,
   });
 
   const { data: categoriesData } = await client.query({
-    query: gql`
-      query Categories {
-        categories(orderBy: listOrder_ASC) {
-          title
-          id
-          slug
-        }
-      }
-    `,
+    query: CATEGORIES_QUERY,
   });
   const categories = categoriesData.categories;
   const images = imagesData.images;
