@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 import profilePic from "../public/profilepic.jpg";
 import client from "../apolloClient";
-import { gql } from "@apollo/client";
 import Layout from "../components/Layout";
 
 function about({ categories }) {
@@ -61,15 +60,7 @@ function about({ categories }) {
 }
 export async function getStaticProps() {
   const { data: categoriesData } = await client.query({
-    query: gql`
-      query Categories {
-        categories(orderBy: listOrder_ASC) {
-          title
-          id
-          slug
-        }
-      }
-    `,
+    query: CATEGORIES_QUERY,
   });
   const categories = categoriesData.categories;
 
