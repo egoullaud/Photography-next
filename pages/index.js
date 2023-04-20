@@ -12,7 +12,6 @@ import videography from "../public/music-video.jpg";
 import heroImg from "../public/hero-img.jpg";
 import Layout from "../components/Layout";
 import client from "../apolloClient";
-import { gql } from "@apollo/client";
 
 function home({ categories }) {
   return (
@@ -193,15 +192,7 @@ export default home;
 
 export async function getStaticProps() {
   const { data: categoriesData } = await client.query({
-    query: gql`
-      query Categories {
-        categories(orderBy: listOrder_ASC) {
-          title
-          id
-          slug
-        }
-      }
-    `,
+    query: CATEGORIES_QUERY,
   });
   const categories = categoriesData.categories;
 
