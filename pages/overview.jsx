@@ -3,9 +3,8 @@ import Hero from "../components/Hero";
 import Services from "../components/Services";
 import Galleries from "../components/Galleries";
 import client from "../apolloClient";
-
-import { gql } from "@apollo/client";
 import Layout from "../components/Layout";
+import { CATEGORIES_QUERY } from "../services/queries";
 
 export default function Overview({ categories }) {
   return (
@@ -18,15 +17,7 @@ export default function Overview({ categories }) {
 }
 export async function getStaticProps() {
   const { data: categoriesData } = await client.query({
-    query: gql`
-      query Categories {
-        categories(orderBy: listOrder_ASC) {
-          title
-          id
-          slug
-        }
-      }
-    `,
+    query: CATEGORIES_QUERY,
   });
   const categories = categoriesData.categories;
 
