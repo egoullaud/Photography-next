@@ -37,7 +37,7 @@ function Services() {
           <Link href="/about">
             <button
               className=" font-bold  px-2 border-[#363636] border-[1px] text-xl
-              hover:bg-[#363636] hover:text-white hover:transition-all hover:durations-1000"
+             hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500"
             >
               About Me
             </button>
@@ -66,8 +66,8 @@ function Services() {
           </p>
           <Link href="/contact">
             <button
-              className="font-bold px-2 mt-4 border-[#363636] border-[1px] text-xl
-              hover:bg-[#363636] hover:text-white hover:transition-all hover:durations-1000"
+              className=" font-bold  px-2 border-[#363636] border-[1px] text-xl
+             hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500"
             >
               Let’s chat!
             </button>
