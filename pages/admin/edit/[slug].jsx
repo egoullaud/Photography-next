@@ -4,6 +4,12 @@ import client from "../../../apolloClient";
 import { gql } from "@apollo/client";
 import Image from "next/image";
 import DashboardLayout from "../../../components/DashboardLayout";
+import {
+  SortableContext,
+  useDroppable,
+  useDraggable,
+  verticalListSortingStrategy,
+} from "@dnd-kit/core";
 
 export async function getStaticPaths() {
   const { data } = await client.query({
@@ -99,44 +105,22 @@ export default function EditGallery({
   categoryTitle,
   videos,
 }) {
-  const [showModal, setShowModal] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const modalRef = useRef();
+  const [imageOrder, setImageOrder] = useState([]);
 
-  const handleImageClick = (index) => {
-    setCurrentIndex(index);
-    setShowModal(true);
-  };
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
 
-  const handleModalClose = () => {
-    setShowModal(false);
-  };
+    if (active.id !== over.id) {
+      const oldIndex = imageOrder.indexOf(active.id);
+      const newIndex = imageOrder.indexOf(over.id);
 
-  const handleArrowClick = (direction) => {
-    if (direction === "prev") {
-      setCurrentIndex(
-        currentIndex === 0 ? images.length - 1 : currentIndex - 1
-      );
-    } else if (direction === "next") {
-      setCurrentIndex(
-        currentIndex === images.length - 1 ? 0 : currentIndex + 1
-      );
+      const newImageOrder = [...imageOrder];
+      newImageOrder.splice(oldIndex, 1);
+      newImageOrder.splice(newIndex, 0, active.id);
+
+      setImageOrder(newImageOrder);
     }
   };
-
-  useEffect(() => {
-    const handleClickOutsideModal = (event) => {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
-        setShowModal(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutsideModal);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutsideModal);
-    };
-  }, []);
 
   if (categoryTitle === "videography") {
     return (
@@ -181,62 +165,49 @@ export default function EditGallery({
       <DashboardLayout categories={categories}>
         <div>
           <h1 className="uppercase text-3xl text-center mt-[2rem] tracking-wider">
-            {" "}
-            {category.title}{" "}
+            {category.title}
           </h1>
-          <div className="md:columns-2 lg:columns-4 gap-2 my-[2rem] mx-2">
-            {images.map((image, index) => (
-              <Image
-                key={image.id}
-                src={image.image.url}
-                width={image.image.width}
-                height={image.image.height}
-                alt="#"
-                className="mb-2"
-                onClick={() => handleImageClick(index)}
-              />
-            ))}
-          </div>
-          {showModal && (
-            <div className="fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-75 flex justify-center items-center">
-              <div
-                className="relative w-[100%] h-[50%] md:w-[100%] md:h-[40%] lg:w-[90%] lg:h-[80%]"
-                ref={modalRef}
-              >
-                <button
-                  className="absolute z-10 top-2 right-2 rounded-full px-3 py-1  text-xs md:text-xl uppercase bg-white text-black hover:bg-[#161616] hover:text-white hover:transition-all hover:duration-500"
-                  onClick={handleModalClose}
-                >
-                  X
-                </button>
-                <div className="absolute inset-0 flex justify-center items-center">
-                  <Image
-                    src={images[currentIndex].image.url}
-                    width={images[currentIndex].image.width}
-                    height={images[currentIndex].image.height}
-                    alt="#"
-                    className="max-w-full max-h-full object-contain"
-                  />
-                </div>
-                <div className="absolute top-1/2 left-0 transform-translate-y-1/2">
-                  <button
-                    className="bg-white text-black text-xs md:text-base px-4 py-2 rounded-full mr-2 uppercase  hover:bg-[#161616] hover:text-white hover:transition-all hover:duration-500"
-                    onClick={() => handleArrowClick("prev")}
+
+          <SortableContext
+            items={images}
+            strategy={verticalListSortingStrategy}
+          >
+            <div className="images md:columns-2 lg:columns-4 gap-2 my-[2rem] mx-2">
+              {images.map((image) => {
+                const { attributes, listeners, setNodeRef } = useDraggable({
+                  id: image.id,
+                });
+
+                const { isOver, setNodeRef: setDroppableNodeRef } =
+                  useDroppable({
+                    id: image.id,
+                  });
+
+                return (
+                  <div
+                    key={image.id}
+                    ref={setNodeRef}
+                    className={`${
+                      isOver ? "bg-gray-200" : ""
+                    } flex flex-col justify-center items-center`}
+                    {...listeners}
+                    {...attributes}
                   >
-                    Prev
-                  </button>
-                </div>
-                <div className="absolute top-1/2 right-0 transform-translate-y-1/2">
-                  <button
-                    className="bg-white text-black px-4 py-2 text-xs md:text-base rounded-full uppercase  hover:bg-[#161616] hover:text-white hover:transition-all hover:duration-500"
-                    onClick={() => handleArrowClick("next")}
-                  >
-                    Next
-                  </button>
-                </div>
-              </div>
+                    <Image
+                      src={image.image.url}
+                      width={image.image.width}
+                      height={image.image.height}
+                      alt="#"
+                      className="mb-2"
+                    />
+                    <div ref={setDroppableNodeRef}>
+                      <p>{image.title}</p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-          )}
+          </SortableContext>
         </div>
       </DashboardLayout>
     );
