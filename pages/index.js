@@ -12,6 +12,7 @@ import videography from "../public/music-video.jpg";
 import heroImg from "../public/hero-img.jpg";
 import Layout from "../components/Layout";
 import client from "../apolloClient";
+import { CATEGORIES_QUERY } from "../services/queries.js";
 
 function home({ categories }) {
   return (
