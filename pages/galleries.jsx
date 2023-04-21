@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { search, mapImageResources, getFolders } from "../lib/cloudinary";
 import Layout from "../components/Layout";
@@ -11,6 +11,9 @@ export default function galleries({
   const [images, setImages] = useState(defaultImages);
   const [nextCursor, setNextCursor] = useState(defaultNextCursor);
   const [activeFolder, setActiveFolder] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const modalRef = useRef();
   console.log(activeFolder);
 
   async function handleLoadMore(e) {
@@ -60,6 +63,40 @@ export default function galleries({
     })();
   }, [activeFolder]);
 
+  const handleImageClick = (index) => {
+    setCurrentIndex(index);
+    setShowModal(true);
+  };
+
+  const handleModalClose = () => {
+    setShowModal(false);
+  };
+
+  const handleArrowClick = (direction) => {
+    if (direction === "prev") {
+      setCurrentIndex(
+        currentIndex === 0 ? images.length - 1 : currentIndex - 1
+      );
+    } else if (direction === "next") {
+      setCurrentIndex(
+        currentIndex === images.length - 1 ? 0 : currentIndex + 1
+      );
+    }
+  };
+
+  useEffect(() => {
+    const handleClickOutsideModal = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        setShowModal(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutsideModal);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutsideModal);
+    };
+  }, []);
   return (
     <Layout>
       <div className="flex flex-col items-center justify-center">
@@ -69,20 +106,22 @@ export default function galleries({
           onClick={handleOnFolderClick}
           className="flex justify-center w-[100%] uppercase"
         >
-          {folders.map((folder) => (
-            <li
-              className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500 p-2 px-4"
-              key={folder.path}
-            >
-              <button data-folder-path={folder.path} className="uppercase">
-                {folder.name}
-              </button>
-            </li>
-          ))}
+          {folders
+            .sort((a, b) => b.name.localeCompare(a.name))
+            .map((folder) => (
+              <li
+                className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 focus:text-white focus:bg-[#363636] ease-out duration-500 p-2 px-4"
+                key={folder.path}
+              >
+                <button data-folder-path={folder.path} className="uppercase">
+                  {folder.name}
+                </button>
+              </li>
+            ))}
         </ul>
         {/* display galleries */}
-        <div className="grid grid-cols-4 gap-2 my-[2rem] mx-2">
-          {images.map((image) => {
+        <div className="lg:columns-3 gap-2 my-[2rem] mx-2">
+          {images.map((image, index) => {
             return (
               <div key={image.id}>
                 <Image
@@ -91,19 +130,61 @@ export default function galleries({
                   height={image.height}
                   src={image.image}
                   alt=""
+                  onClick={() => handleImageClick(index)}
                 />
               </div>
             );
           })}
         </div>
-
-        <button
-          onClick={handleLoadMore}
-          className=" font-bold  px-2 border-[#363636] border-[1px] text-xl
+        {activeFolder && (
+          <button
+            onClick={handleLoadMore}
+            className=" font-bold  px-2 border-[#363636] border-[1px] text-xl
              hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500"
-        >
-          Load More
-        </button>
+          >
+            Load More
+          </button>
+        )}
+        {showModal && (
+          <div className="fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-75 flex justify-center items-center">
+            <div
+              className="relative w-[100%] h-[50%] md:w-[100%] md:h-[40%] lg:w-[90%] lg:h-[80%]"
+              ref={modalRef}
+            >
+              <button
+                className="absolute z-10 top-2 right-2 rounded-full px-3 py-1  text-xs md:text-xl uppercase bg-white text-black hover:bg-[#161616] hover:text-white hover:transition-all hover:duration-500"
+                onClick={handleModalClose}
+              >
+                X
+              </button>
+              <div className="absolute inset-0 flex justify-center items-center">
+                <Image
+                  src={images[currentIndex].image}
+                  width={images[currentIndex].width}
+                  height={images[currentIndex].height}
+                  alt=""
+                  className="max-w-full max-h-full object-contain"
+                />
+              </div>
+              <div className="absolute top-1/2 left-0 transform-translate-y-1/2">
+                <button
+                  className="bg-white text-black text-xs md:text-base px-4 py-2 rounded-full mr-2 uppercase  hover:bg-[#161616] hover:text-white hover:transition-all hover:duration-500"
+                  onClick={() => handleArrowClick("prev")}
+                >
+                  Prev
+                </button>
+              </div>
+              <div className="absolute top-1/2 right-0 transform-translate-y-1/2">
+                <button
+                  className="bg-white text-black px-4 py-2 text-xs md:text-base rounded-full uppercase  hover:bg-[#161616] hover:text-white hover:transition-all hover:duration-500"
+                  onClick={() => handleArrowClick("next")}
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </Layout>
   );
