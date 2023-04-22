@@ -1,12 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import profilePic from "../public/profilepic.jpg";
-import client from "../apolloClient";
 import Layout from "../components/Layout";
 
-function about({ categories }) {
+function about() {
   return (
-    <Layout categories={categories}>
+    <Layout>
       <h1
         className=" font-bold uppercase text-3xl text-center my-[2rem] tracking-wider
                         lg:text-5xl lg:my-[4rem] "
@@ -58,18 +57,18 @@ function about({ categories }) {
     </Layout>
   );
 }
-export async function getStaticProps() {
-  const { data: categoriesData } = await client.query({
-    query: CATEGORIES_QUERY,
-  });
-  const categories = categoriesData.categories;
+// export async function getStaticProps() {
+//   const { data: categoriesData } = await client.query({
+//     query: CATEGORIES_QUERY,
+//   });
+//   const categories = categoriesData.categories;
 
-  return {
-    props: {
-      categories,
-    },
-    revalidate: 86400,
-  };
-}
+//   return {
+//     props: {
+//       categories,
+//     },
+//     revalidate: 86400,
+//   };
+// }
 
 export default about;

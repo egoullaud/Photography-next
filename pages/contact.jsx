@@ -2,12 +2,12 @@ import Form from "../components/Form";
 import React from "react";
 import { GrFacebook, GrInstagram } from "react-icons/gr";
 import Link from "next/link";
-import client from "../apolloClient";
+
 import Layout from "../components/Layout";
 
-export default function contact({ categories }) {
+export default function contact() {
   return (
-    <Layout categories={categories}>
+    <Layout>
       <h1
         className=" font-bold uppercase text-3xl text-center my-[2rem] tracking-wider 
                         "
@@ -56,18 +56,4 @@ export default function contact({ categories }) {
       </div>
     </Layout>
   );
-}
-
-export async function getStaticProps() {
-  const { data: categoriesData } = await client.query({
-    query: CATEGORIES_QUERY,
-  });
-  const categories = categoriesData.categories;
-
-  return {
-    props: {
-      categories,
-    },
-    revalidate: 86400,
-  };
 }
