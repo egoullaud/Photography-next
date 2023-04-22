@@ -63,6 +63,8 @@ export default function galleries({
     })();
   }, [activeFolder]);
 
+  // modal functions
+
   const handleImageClick = (index) => {
     setCurrentIndex(index);
     setShowModal(true);
@@ -99,7 +101,7 @@ export default function galleries({
   }, []);
   return (
     <Layout>
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center mb-[2rem]">
         {/* NavBar */}
         {/* cloudinary folders */}
         <ul
@@ -120,7 +122,7 @@ export default function galleries({
             ))}
         </ul>
         {/* display galleries */}
-        <div className="lg:columns-3 gap-2 my-[2rem] mx-2">
+        <div className="columns-1 md:columns-2 lg:columns-3 gap-2 my-[2rem] mx-2">
           {images.map((image, index) => {
             return (
               <div key={image.id}>
@@ -139,8 +141,7 @@ export default function galleries({
         {activeFolder && (
           <button
             onClick={handleLoadMore}
-            className=" font-bold  px-2 border-[#363636] border-[1px] text-xl
-             hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500"
+            className="uppercase hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 focus:text-white focus:bg-[#363636] ease-out duration-500 p-2 px-4"
           >
             Load More
           </button>
