@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { search, mapImageResources, getFolders } from "../../lib/cloudinary";
+import DashboardLayout from "../../components/DashboardLayout";
 
 export default function admin({
   images: defaultImages,
@@ -10,6 +11,7 @@ export default function admin({
   const [images, setImages] = useState(defaultImages);
   const [nextCursor, setNextCursor] = useState(defaultNextCursor);
   const [activeFolder, setActiveFolder] = useState("");
+
   console.log(activeFolder);
 
   async function handleLoadMore(e) {
@@ -60,52 +62,30 @@ export default function admin({
   }, [activeFolder]);
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      {/* NavBar */}
-      <div
-        className="text-center my-[2rem] uppercase
-                      md:my-[3rem]
-                        lg:my-[4rem]"
-      >
-        <h1 className="text-center text-3xl md:text-5xl lg:text-7xl leading-none tracking-widest">
-          Raine Gauthier
-        </h1>
-        <h2 className=" text-xl md:text-3xl lg:text-4xl tracking-widest">
-          Photography
-        </h2>
-      </div>
-      <ul className="flex justify-around w-[100%] uppercase border-b-[1px] border-[#363636]">
-        <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500 p-2 px-4">
-          <button className="uppercase">overview</button>
-        </li>
-        <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500 p-2 px-4">
-          <button className="uppercase">About</button>
-        </li>
+    <DashboardLayout>
+      <div className="flex flex-col items-center justify-center mb-[2rem]">
         {/* cloudinary folders */}
         <ul
           onClick={handleOnFolderClick}
-          className="flex justify-around w-[100%] uppercase"
+          className="flex justify-center w-[100%] uppercase"
         >
-          {folders.map((folder) => (
-            <li
-              className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500 p-2 px-4"
-              key={folder.path}
-            >
-              <button data-folder-path={folder.path} className="uppercase">
-                {folder.name}
-              </button>
-            </li>
-          ))}
+          {folders
+            .sort((a, b) => b.name.localeCompare(a.name))
+            .map((folder) => (
+              <li
+                className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 focus:text-white focus:bg-[#363636] ease-out duration-500 p-2 px-4"
+                key={folder.path}
+              >
+                <button data-folder-path={folder.path} className="uppercase">
+                  {folder.name}
+                </button>
+              </li>
+            ))}
         </ul>
 
-        <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500 p-2 px-4">
-          <button className="uppercase">contact</button>
-        </li>
-      </ul>
+        {/* display galleries */}
 
-      {/* display galleries */}
-      {activeFolder &&
-        (<div className="grid grid-cols-4 gap-2 my-[2rem] mx-2">
+        <div className="columns-1 md:columns-2 lg:columns-3 gap-2 my-[2rem] mx-2">
           {images.map((image) => {
             return (
               <div key={image.id}>
@@ -119,16 +99,16 @@ export default function admin({
               </div>
             );
           })}
-        </div>)(
-          <button
-            onClick={handleLoadMore}
-            className=" font-bold  px-2 border-[#363636] border-[1px] text-xl
+        </div>
+        <button
+          onClick={handleLoadMore}
+          className=" font-bold  px-2 border-[#363636] border-[1px] text-xl
            hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500"
-          >
-            Load More
-          </button>
-        )}
-    </div>
+        >
+          Load More
+        </button>
+      </div>
+    </DashboardLayout>
   );
 }
 
