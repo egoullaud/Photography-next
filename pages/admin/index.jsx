@@ -3,7 +3,7 @@ import Image from "next/image";
 import { search, mapImageResources, getFolders } from "../../lib/cloudinary";
 import DashboardLayout from "../../components/DashboardLayout";
 
-export default function admin({
+export default function Admin({
   images: defaultImages,
   nextCursor: defaultNextCursor,
   folders,

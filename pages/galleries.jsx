@@ -3,7 +3,7 @@ import Image from "next/image";
 import { search, mapImageResources, getFolders } from "../lib/cloudinary";
 import Layout from "../components/Layout";
 
-export default function galleries({
+export default function Galleries({
   images: defaultImages,
   nextCursor: defaultNextCursor,
   folders,

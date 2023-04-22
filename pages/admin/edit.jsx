@@ -1,7 +1,8 @@
 import React from "react";
 import UploadAssetForm from "../../components/UploadAssetForm";
 import DashboardLayout from "../../components/DashboardLayout";
-function edit() {
+
+export default function Edit() {
   return (
     <div>
       <DashboardLayout>
@@ -10,5 +11,3 @@ function edit() {
     </div>
   );
 }
-
-export default edit;
