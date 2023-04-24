@@ -2,21 +2,21 @@ import React, { useState, useEffect } from "react";
 import { CldUploadWidget } from "next-cloudinary";
 
 function UploadAssetForm() {
-  const [selectedCategory, setSelectedCategory] = useState("home");
+  const [selectedCategory, setSelectedCategory] = useState("upload_home");
+  const [widgetKey, setWidgetKey] = useState(0); // add state for widget key
 
   function handleCategoryChange(event) {
     setSelectedCategory(event.target.value);
+    console.log("changed category", selectedCategory);
+    setWidgetKey(widgetKey + 1); // increment widget key
   }
-  useEffect(() => {
-    console.log("category", selectedCategory);
-  }, [selectedCategory]);
-
+  console.log("set", selectedCategory);
   return (
     <div className="flex flex-col items-center justify-center my-[5rem]">
       <h1 className=" text-xl md:text-3xl lg:text-4xl tracking-widest mb-[2rem]">
         Upload New Photo
       </h1>
-      <form className="flex flex-col" action="">
+      <form className="flex flex-col">
         <div className="flex">
           <label className="mx-4" htmlFor="category">
             Choose a Gallery
@@ -31,12 +31,13 @@ function UploadAssetForm() {
           </select>
         </div>
 
-        <CldUploadWidget uploadPreset={`${selectedCategory}`}>
+        <CldUploadWidget key={widgetKey} uploadPreset={selectedCategory}>
           {({ open }) => {
             function handleOnClick(e) {
               e.preventDefault();
               open();
             }
+            console.log("widget preset", selectedCategory);
             return (
               <button
                 className="mt-4 uppercase w-[60%] mx-auto hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 focus:text-white focus:bg-[#363636] ease-out duration-500 p-2 px-4"
