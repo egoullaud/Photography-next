@@ -106,7 +106,7 @@ export default function Galleries({
         {/* cloudinary folders */}
         <ul
           onClick={handleOnFolderClick}
-          className="flex justify-center w-[100%] uppercase"
+          className="flex flex-wrap justify-center w-[100%] uppercase"
         >
           {folders
             .sort((a, b) => b.name.localeCompare(a.name))
