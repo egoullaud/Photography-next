@@ -8,3 +8,21 @@ html {
   font-family: "Baskerville", "serif";
   color: #363636;
 }
+
+/* ol {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(16.5rem, 1fr));
+  grid-template-rows: masonry;
+  masonry-auto-flow: next;
+} */
+
+.my-masonry-grid {
+  display: -webkit-box; /* Not needed if autoprefixing */
+  display: -ms-flexbox; /* Not needed if autoprefixing */
+  display: flex;
+  width: auto;
+}
+.my-masonry-grid_column {
+  background-clip: padding-box;
+}
