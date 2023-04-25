@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { search, mapImageResources, getFolders } from "../lib/cloudinary";
 import Layout from "../components/Layout";
+import Masonry from "react-masonry-css";
 
 export default function Galleries({
   images: defaultImages,
@@ -99,6 +100,12 @@ export default function Galleries({
       document.removeEventListener("mousedown", handleClickOutsideModal);
     };
   }, []);
+  const breakpointColumnsObj = {
+    default: 4,
+    1100: 4,
+    850: 3,
+    500: 2,
+  };
   return (
     <Layout>
       <div className="flex flex-col items-center justify-center mb-[2rem]">
@@ -122,22 +129,27 @@ export default function Galleries({
             ))}
         </ul>
         {/* display galleries */}
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-2 my-[2rem] mx-2">
-          {images.map((image, index) => {
-            return (
-              <div key={image.id}>
-                <Image
-                  className="mb-2"
-                  width={image.width}
-                  height={image.height}
-                  src={image.image}
-                  alt=""
-                  onClick={() => handleImageClick(index)}
-                />
-              </div>
-            );
-          })}
-        </div>
+        <ol>
+          <Masonry
+            breakpointCols={breakpointColumnsObj}
+            className="my-masonry-grid mt-5 ml-2"
+            columnClassName="my-masonry-grid_column"
+          >
+            {images.map((image, index) => {
+              return (
+                <li key={image.id} className="mb-2 mr-2">
+                  <Image
+                    width={image.width}
+                    height={image.height}
+                    src={image.image}
+                    alt=""
+                    onClick={() => handleImageClick(index)}
+                  />
+                </li>
+              );
+            })}
+          </Masonry>
+        </ol>
         {activeFolder && (
           <button
             onClick={handleLoadMore}

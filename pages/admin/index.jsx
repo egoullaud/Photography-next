@@ -75,7 +75,7 @@ export default function Admin({
         method: "POST",
         body: JSON.stringify({
           nextCursor,
-          expression: `folder="${activeFolder || ""}"`,
+          expression: `folder="${activeFolder}"`,
           // sort_by: "public_id=asc",
         }),
       }).then((r) => r.json());
@@ -96,9 +96,9 @@ export default function Admin({
     })();
   }, [activeFolder]);
   const breakpointColumnsObj = {
-    default: 3,
-    1100: 3,
-    700: 3,
+    default: 4,
+    1100: 4,
+    850: 3,
     500: 2,
   };
 
@@ -130,6 +130,7 @@ export default function Admin({
           <Droppable droppableId="images">
             {(provided) => (
               <ol
+                // className="grid grid-cols-3"
                 {...provided.droppableProps}
                 ref={provided.innerRef}
                 // className="columns-1 md:columns-2 lg:columns-3 gap-2 my-[2rem] mx-2"
