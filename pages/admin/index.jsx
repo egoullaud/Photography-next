@@ -21,7 +21,7 @@ export default function Admin({
   const [nextCursor, setNextCursor] = useState(defaultNextCursor);
   const [totalCount, setTotalCount] = useState(defaultTotalCount);
   const [activeFolder, setActiveFolder] = useState("");
-  const [position, updatePosition] = useState(defaultImages);
+  const [position, setPosition] = useState(defaultImages);
 
   console.log(activeFolder);
 
@@ -54,7 +54,7 @@ export default function Admin({
     const folderPath = e.target.dataset.folderPath;
     setActiveFolder(folderPath);
     setNextCursor(undefined);
-    updatePosition([]);
+    setPosition([]);
     setImages([]);
     setTotalCount(0);
   }
@@ -66,7 +66,15 @@ export default function Admin({
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
-    updatePosition(items);
+    setPosition(items);
+  }
+  function handleOnSaveClick() {
+    const newImages = position.map((image, index) => {
+      const publicId = `${activeFolder}/${activeFolder}0${index}`;
+      return { ...image, public_id: publicId };
+    });
+    console.log(newImages);
+    setImages(newImages);
   }
 
   useEffect(() => {
@@ -90,7 +98,7 @@ export default function Admin({
       // console.log(images);
 
       setImages(images);
-      updatePosition(images);
+      setPosition(images);
       setNextCursor(updatedNextCursor);
       setTotalCount(updatedTotalCount);
     })();
@@ -124,7 +132,13 @@ export default function Admin({
               </li>
             ))}
         </ul>
-
+        <button
+          onClick={handleOnSaveClick}
+          className=" font-bold  px-2 border-[#363636] border-[1px] text-xl
+           hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500"
+        >
+          Save
+        </button>
         {/* display galleries */}
         <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId="images">
