@@ -23,7 +23,7 @@ export default function Admin({
   const [activeFolder, setActiveFolder] = useState("");
   const [position, setPosition] = useState(defaultImages);
 
-  console.log(activeFolder);
+  // console.log(activeFolder);
 
   async function handleLoadMore(e) {
     e.preventDefault();
@@ -60,7 +60,7 @@ export default function Admin({
   }
 
   function handleOnDragEnd(result) {
-    console.log(result);
+    // console.log(result);
     if (!result.destination) return;
     const items = Array.from(position);
     const [reorderedItem] = items.splice(result.source.index, 1);
@@ -68,15 +68,30 @@ export default function Admin({
 
     setPosition(items);
   }
-  function handleOnSaveClick() {
+  async function handleOnSaveClick() {
     const newImages = position.map((image, index) => {
-      const publicId = `${activeFolder}/${activeFolder}0${index}`;
-      return { ...image, public_id: publicId };
+      const fileName = `${activeFolder}0${index}`;
+      return { ...image, filename: fileName };
     });
-    console.log(newImages);
+
+    const updatePromises = newImages.map((image) => {
+      const { id, filename } = image;
+      const apiUrl = `https://api.cloudinary.com/v1_1/dvs80gwwq/upload/image/rename/${id}`;
+      const body = new FormData();
+      body.append("public_id", filename);
+      body.append("overwrite", true);
+
+      return fetch(apiUrl, {
+        mode: "no-cors",
+        method: "POST",
+        body,
+      });
+    });
+
+    await Promise.all(updatePromises);
+
     setImages(newImages);
   }
-
   useEffect(() => {
     (async function run() {
       const results = await fetch("/api/search", {
