@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.11",
+    "cloudinary": "^1.36.2",
     "dotenv": "^16.0.3",
     "graphql": "^16.6.0",
     "next": "13.2.4",
