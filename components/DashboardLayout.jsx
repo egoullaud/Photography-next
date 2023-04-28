@@ -8,7 +8,7 @@ function DashboardLayout({ children, categories }) {
     <>
       <DashboardHeader />
       <DashboardAside categories={categories} />
-      <main className=" ml-[20%]">{children}</main>
+      <main className="ml-[4rem]">{children}</main>
     </>
   );
 }
