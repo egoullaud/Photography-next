@@ -70,12 +70,46 @@ export default function Admin({
   }
 
   async function handleOnSaveClick() {
-    const newImages = position.map((image, index) => {
-      const fileName = `${activeFolder}0${index}`;
-      return { ...image, filename: fileName };
-    });
+    const newImages = await Promise.all(
+      position.map(async (image, index) => {
+        const newPublicId = `${activeFolder}0${index}`;
+        const renamedPublicId = await renamePublicId(
+          image.public_id,
+          newPublicId
+        );
+        return { ...image, public_id: renamedPublicId };
+      })
+    );
 
     setImages(newImages);
+    const url = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/rename`;
+
+    const formData = new FormData();
+    formData.append("api_key", process.env.NEXT_PUBLIC_CLOUD_API_KEY);
+    formData.append("timestamp", Math.floor(Date.now() / 1000));
+    formData.append("overwrite", true);
+    formData.append("signature", signature);
+
+    newImages.forEach((image) => {
+      formData.append("from_public_id", image.public_id);
+      formData.append("to_public_id", `${activeFolder}${image.id}`);
+    });
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors",
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      });
+
+      const result = await response.json();
+      console.log(result);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   useEffect(() => {
