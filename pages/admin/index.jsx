@@ -68,30 +68,16 @@ export default function Admin({
 
     setPosition(items);
   }
+
   async function handleOnSaveClick() {
     const newImages = position.map((image, index) => {
       const fileName = `${activeFolder}0${index}`;
       return { ...image, filename: fileName };
     });
 
-    const updatePromises = newImages.map((image) => {
-      const { id, filename } = image;
-      const apiUrl = `https://api.cloudinary.com/v1_1/dvs80gwwq/upload/image/rename/${id}`;
-      const body = new FormData();
-      body.append("public_id", filename);
-      body.append("overwrite", true);
-
-      return fetch(apiUrl, {
-        mode: "no-cors",
-        method: "POST",
-        body,
-      });
-    });
-
-    await Promise.all(updatePromises);
-
     setImages(newImages);
   }
+
   useEffect(() => {
     (async function run() {
       const results = await fetch("/api/search", {
