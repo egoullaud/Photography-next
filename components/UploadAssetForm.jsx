@@ -8,7 +8,7 @@ function UploadAssetForm() {
   function handleCategoryChange(event) {
     setSelectedCategory(event.target.value);
     console.log("changed category", selectedCategory);
-    setWidgetKey(widgetKey + 1); // increment widget key
+    setWidgetKey(widgetKey + 1); // increment widget key to reload preset after category selected
   }
   console.log("set", selectedCategory);
   return (
@@ -34,7 +34,7 @@ function UploadAssetForm() {
         <CldUploadWidget
           key={widgetKey}
           uploadPreset={selectedCategory}
-          signatureEndpoint="/api/sign-cloudinary-params"
+          // signatureEndpoint="/api/sign-cloudinary-params"
           // ! Error: Missing dependency: Signed Upload requires an API key
           //? Where to input the API key? I do have "NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME" in my .env.local file.
         >
