@@ -12,7 +12,7 @@ function UploadAssetForm() {
   }
   console.log("set", selectedCategory);
   return (
-    <div className="flex flex-col items-center justify-center my-[5rem]">
+    <div className="flex flex-col items-center justify-center my-[2rem]">
       <h1 className=" text-xl md:text-3xl lg:text-4xl tracking-widest mb-[2rem]">
         Upload New Photo
       </h1>
