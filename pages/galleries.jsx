@@ -8,12 +8,14 @@ export default function Galleries({
   images: defaultImages,
   nextCursor: defaultNextCursor,
   folders,
+  totalCount: defaultTotalCount,
 }) {
   const [images, setImages] = useState(defaultImages);
   const [nextCursor, setNextCursor] = useState(defaultNextCursor);
   const [activeFolder, setActiveFolder] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [totalCount, setTotalCount] = useState(defaultTotalCount);
   const modalRef = useRef();
   console.log(activeFolder);
 
@@ -26,7 +28,11 @@ export default function Galleries({
         expression: `folder="${activeFolder}"`,
       }),
     }).then((r) => r.json());
-    const { resources, next_cursor: updatedNextCursor } = results;
+    const {
+      resources,
+      next_cursor: updatedNextCursor,
+      total_count: updatedTotalCount,
+    } = results;
 
     const images = mapImageResources(resources);
 
@@ -35,6 +41,7 @@ export default function Galleries({
     });
 
     setNextCursor(updatedNextCursor);
+    setTotalCount(updatedTotalCount);
   }
 
   function handleOnFolderClick(e) {
@@ -54,13 +61,17 @@ export default function Galleries({
           // sort_by: "public_id=asc",
         }),
       }).then((r) => r.json());
-      const { resources, next_cursor: updatedNextCursor } = results;
+      const {
+        resources,
+        next_cursor: updatedNextCursor,
+        total_count: updatedTotalCount,
+      } = results;
 
       const images = mapImageResources(resources);
-      console.log(images);
-      setImages(images);
 
+      setImages(images);
       setNextCursor(updatedNextCursor);
+      setTotalCount(updatedTotalCount);
     })();
   }, [activeFolder]);
 
@@ -208,7 +219,11 @@ export async function getStaticProps() {
     expression: `folder=""`,
   });
   // destructure resources
-  const { resources, next_cursor: nextCursor } = results;
+  const {
+    resources,
+    next_cursor: nextCursor,
+    total_count: totalCount,
+  } = results;
 
   const images = mapImageResources(resources);
   const { folders } = await getFolders();
@@ -216,6 +231,6 @@ export async function getStaticProps() {
 
   // console.log("static Props", results);
   return {
-    props: { images, nextCursor: nextCursor || false, folders },
+    props: { images, nextCursor: nextCursor || false, folders, totalCount },
   };
 }
