@@ -9,7 +9,7 @@ import {
 import { FaRegEdit } from "react-icons/fa";
 
 function DashboardAside() {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
 
   const toggleSideBar = () => {
     setIsCollapsed(!isCollapsed);
