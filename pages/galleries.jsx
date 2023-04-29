@@ -12,7 +12,7 @@ export default function Galleries({
 }) {
   const [images, setImages] = useState(defaultImages);
   const [nextCursor, setNextCursor] = useState(defaultNextCursor);
-  const [activeFolder, setActiveFolder] = useState("");
+  const [activeFolder, setActiveFolder] = useState("portraits");
   const [showModal, setShowModal] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [totalCount, setTotalCount] = useState(defaultTotalCount);
@@ -161,14 +161,17 @@ export default function Galleries({
             })}
           </Masonry>
         </ol>
-        {activeFolder && (
+
+        {totalCount > images.length && (
           <button
             onClick={handleLoadMore}
-            className="uppercase hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 focus:text-white focus:bg-[#363636] ease-out duration-500 p-2 px-4"
+            className=" font-bold  px-2 border-[#363636] border-[1px] text-xl
+           hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500"
           >
             Load More
           </button>
         )}
+
         {showModal && (
           <div className="fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-75 flex justify-center items-center">
             <div
