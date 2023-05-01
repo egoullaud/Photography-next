@@ -40,3 +40,53 @@ export const IMAGES_BY_SLUG = gql`
     }
   }
 `;
+
+export const ABOUT_PAGE_QUERY = gql`
+  query About {
+    abouts {
+      aboutPic {
+        height
+        width
+        url
+      }
+      id
+      title
+      content {
+        html
+      }
+    }
+  }
+`;
+export const HERO_PAGE_QUERY = gql`
+  query Hero {
+    heroes {
+      id
+      isCurrentVersion
+      heroImage {
+        height
+        url
+        width
+      }
+      heroQuote {
+        html
+      }
+    }
+  }
+`;
+
+export const SERVICES_PAGE_GUERY = gql`
+  query Services {
+    services {
+      id
+      title
+      content {
+        html
+      }
+      image {
+        height
+        url
+        width
+      }
+    }
+  }
+`;
