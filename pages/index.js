@@ -1,7 +1,4 @@
 import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
-import heroImg from "../public/hero-img.jpg";
 import Layout from "../components/Layout";
 import {
   HERO_PAGE_QUERY,

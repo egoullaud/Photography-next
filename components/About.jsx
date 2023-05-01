@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React from "react";
-Image;
 import Link from "next/link";
 function About({ about }) {
   return (

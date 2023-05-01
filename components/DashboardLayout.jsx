@@ -1,6 +1,5 @@
 import React from "react";
 import DashboardHeader from "./DashboardHeader";
-
 import DashboardAside from "./DashboardAside";
 
 function DashboardLayout({ children, categories }) {
