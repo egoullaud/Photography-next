@@ -227,7 +227,7 @@ export async function getStaticProps() {
     total_count: totalCount,
   } = results;
 
-  const images = resources?.map((resource) => {
+  const images = resources.map((resource) => {
     const { width, height } = resource;
     return {
       id: resource.asset_id,
@@ -243,6 +243,11 @@ export async function getStaticProps() {
 
   // console.log("static Props", results);
   return {
-    props: { images, nextCursor: nextCursor || false, folders, totalCount },
+    props: {
+      images: images || null,
+      nextCursor: nextCursor || false,
+      folders,
+      totalCount,
+    },
   };
 }
