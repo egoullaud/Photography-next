@@ -227,7 +227,17 @@ export async function getStaticProps() {
     total_count: totalCount,
   } = results;
 
-  const images = mapImageResources(resources);
+  const images = resources.map((resource) => {
+    const { width, height } = resource;
+    return {
+      id: resource.asset_id,
+      title: resource.public_id,
+      image: resource.secure_url,
+      width,
+      height,
+    };
+  });
+
   const { folders } = await getFolders();
   // console.log("folders", folders);
 
