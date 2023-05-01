@@ -14,7 +14,7 @@ function Footer() {
           >
             {" "}
             <li>
-              <GrFacebook className="text-2xl" />
+              <GrFacebook className="text-2xl hover:scale-110 hover:shadow-lg hover:transition-all hover:duration-500 ease-out duration-500" />
             </li>
           </Link>
           <Link
@@ -23,18 +23,22 @@ function Footer() {
           >
             {" "}
             <li>
-              <GrInstagram className="text-2xl" />
+              <GrInstagram className="text-2xl  hover:scale-110 hover:shadow-lg hover:transition-all hover:duration-500 ease-out duration-500 " />
             </li>
           </Link>
         </ul>
       </div>
       <div className="lg:w-[33%] lg:py-[3rem] lg:border-x-2 border-[#1f1f1f] my-2 flex-col flex justify-center items-center">
-        <Link href="/overview">
+        <Link href="/">
           <h4 className="text-center py-5 underline text-xl">
             Raine Gauthier Photography
           </h4>
         </Link>
-        <p>back to top</p>
+        <Link href="https://www.leegoullaud.com/" target="_blank">
+          <p className="capitalize hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500 p-2 px-4">
+            Created by Lee Goullaud 2023
+          </p>
+        </Link>
       </div>
       <div className="lg:w-[33%] lg:py-[3rem] flex-col flex justify-center items-center">
         <Link href="/contact">
