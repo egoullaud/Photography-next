@@ -26,3 +26,7 @@ html {
 .my-masonry-grid_column {
   background-clip: padding-box;
 }
+
+.about p {
+  margin-bottom: 1rem;
+}
