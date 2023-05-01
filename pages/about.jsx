@@ -24,9 +24,9 @@ function about({ about }) {
               <Image
                 priority
                 className="w-[90%] xl:w-[70%]"
-                height={about.image.height}
-                width={about.image.width}
-                src={about.image.url}
+                height={about.aboutPic.height}
+                width={about.aboutPic.width}
+                src={about.aboutPic.url}
                 alt="#"
               />
             </div>
