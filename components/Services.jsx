@@ -5,76 +5,49 @@ import videography from "../public/videography6.jpg";
 import Cta from "./Cta";
 import Link from "next/link";
 
-function Services() {
+function Services({ services }) {
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col mb-5 ">
       <h1
         className="uppercase text-3xl text-center pt-[2rem] border-t-2 border-[#363636] tracking-wider
-                    lg:text-5xl"
+            lg:text-5xl"
       >
         services
       </h1>
 
       <div className="flex flex-col md:flex-row justify-around items-start xl:justify-center mt-[2rem] lg:mt-[5rem]">
-        <div
-          className="flex flex-col justify-center items-center ml-4
-          md:w-[45%] 
-          lg:w-[50%]
-          xl:w-[35%] "
-        >
-          <Image
-            src={photography}
-            className=" object-cover h-52 w-64 "
-            alt="#"
-          />
-          <h3 className="pt-2 text-2xl font-bold pb-2  uppercase tracking-widest">
-            Photography
-          </h3>
-          <p className="w-[90%] text-center tracking-widest mt-4 mb-4">
-            I offer a wide range of services, including events, shows,
-            festivals, headshots, couple and family portraits. <br />
-          </p>
-          <Link href="/about">
-            <button
-              className=" font-bold  px-2 border-[#363636] border-[1px] text-xl
-             hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500"
-            >
-              About Me
-            </button>
-          </Link>
-        </div>
-
-        <div
-          className="flex flex-col justify-center items-center pb-2
-          md:w-[60%]
-          lg:w-[50%]
-          xl:w-[40%]"
-        >
-          <Image
-            src={videography}
-            className=" object-cover h-52 w-64"
-            alt="#"
-          />
-          <h3 className="pt-2 text-2xl font-bold pb-2  uppercase tracking-widest">
-            Videography
-          </h3>
-          <p className="w-[90%] text-center tracking-widest">
-            I offer production and post-production services. Looking for someone
-            to create your next video for social media? Have an idea for a
-            documentary that you would love to see come to life?
-            <br />
-          </p>
-          <Link href="/contact">
-            <button
-              className=" font-bold  px-2 border-[#363636] border-[1px] text-xl
-             hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500"
-            >
-              Let’s chat!
-            </button>
-          </Link>
-        </div>
+        {services.map((service) => (
+          <div
+            key={service.id}
+            className="flex flex-col justify-center items-center ml-4
+  md:w-[45%] 
+  lg:w-[50%]
+  xl:w-[35%] "
+          >
+            <Image
+              src={service.image.url}
+              height={service.image.height}
+              width={service.image.width}
+              className=" object-cover h-64 w-80"
+              alt="#"
+            />
+            <h3 className="pt-2 text-2xl font-bold pb-2  uppercase tracking-widest">
+              {service.title}
+            </h3>
+            <p
+              dangerouslySetInnerHTML={{ __html: service.content.html }}
+              className="w-[90%] text-center tracking-widest mt-4 mb-4"
+            ></p>
+          </div>
+        ))}
       </div>
-      {/* <Cta /> */}
+      <div className="flex justify-center items-center my-5">
+        <Link href="/galleries">
+          <button className="p-2 px-4 w-[12rem] lg:text-xl uppercase shadow-md bg-[#363636] hover:bg-[#4c4c4c] text-white hover:transition-all hover:duration-500 focus:text-white focus:bg-[#363636] ease-out duration-500 tracking-wide">
+            See my work{" "}
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }
