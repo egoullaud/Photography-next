@@ -5,8 +5,10 @@ import photography from "../public/photography.jpg";
 import videographyServices from "../public/videography6.jpg";
 import heroImg from "../public/hero-img.jpg";
 import Layout from "../components/Layout";
+import { SERVICES_PAGE_GUERY } from "../services/queries";
+import client from "../apolloClient";
 
-function home() {
+function home({ services }) {
   return (
     <Layout>
       <div>
@@ -37,6 +39,7 @@ function home() {
           </div>
 
           {/* services area */}
+
           <div className="flex flex-col ">
             <h1
               className="uppercase text-3xl text-center pt-[2rem] border-t-2 border-[#363636] tracking-wider
@@ -46,33 +49,38 @@ function home() {
             </h1>
 
             <div className="flex flex-col md:flex-row justify-around items-start xl:justify-center mt-[2rem] lg:mt-[5rem]">
-              <div
-                className="flex flex-col justify-center items-center ml-4
+              {services.map((service) => (
+                <div
+                  key={service.id}
+                  className="flex flex-col justify-center items-center ml-4
           md:w-[45%] 
           lg:w-[50%]
           xl:w-[35%] "
-              >
-                <Image
-                  src={photography}
-                  className=" object-cover h-52 w-64 "
-                  alt="#"
-                />
-                <h3 className="pt-2 text-2xl font-bold pb-2  uppercase tracking-widest">
-                  Photography
-                </h3>
-                <p className="w-[90%] text-center tracking-widest mt-4 mb-4">
-                  I offer a wide range of services, including events, shows,
-                  festivals, headshots, couple and family portraits. <br />
-                </p>
-                <Link href="/about">
-                  <button
-                    className=" font-bold  px-2 border-[#363636] border-[1px] text-xl
+                >
+                  <Image
+                    src={service.image.url}
+                    height={service.image.height}
+                    width={service.image.width}
+                    className=" object-cover h-52 w-64 "
+                    alt="#"
+                  />
+                  <h3 className="pt-2 text-2xl font-bold pb-2  uppercase tracking-widest">
+                    {service.title}
+                  </h3>
+                  <p
+                    dangerouslySetInnerHTML={service.content.html}
+                    className="w-[90%] text-center tracking-widest mt-4 mb-4"
+                  ></p>
+                  <Link href="/about">
+                    <button
+                      className=" font-bold  px-2 border-[#363636] border-[1px] text-xl
               hover:bg-[#363636] hover:text-white hover:transition-all hover:durations-1000"
-                  >
-                    About Me
-                  </button>
-                </Link>
-              </div>
+                    >
+                      About Me
+                    </button>
+                  </Link>
+                </div>
+              ))}
 
               <div
                 className="flex flex-col justify-center items-center pb-2
@@ -111,5 +119,19 @@ function home() {
       </div>
     </Layout>
   );
+}
+
+export async function getStaticProps() {
+  const { data } = await client.query({
+    query: SERVICES_PAGE_GUERY,
+  });
+  const services = data.services;
+
+  return {
+    props: {
+      services,
+    },
+    revalidate: 86400,
+  };
 }
 export default home;
