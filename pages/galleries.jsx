@@ -227,7 +227,7 @@ export async function getStaticProps() {
     total_count: totalCount,
   } = results;
 
-  const images = resources.map((resource) => {
+  const images = resources?.map((resource) => {
     const { width, height } = resource;
     return {
       id: resource.asset_id,
