@@ -218,6 +218,11 @@ export async function getServerSideProps() {
 
   // console.log("static Props", results);
   return {
-    props: { images, nextCursor: nextCursor || false, folders, totalCount },
+    props: {
+      images: images || null,
+      nextCursor: nextCursor || false,
+      folders: folders || null,
+      totalCount: totalCount || false,
+    },
   };
 }

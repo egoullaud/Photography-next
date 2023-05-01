@@ -246,8 +246,8 @@ export async function getStaticProps() {
     props: {
       images: images || null,
       nextCursor: nextCursor || false,
-      folders,
-      totalCount,
+      folders: folders || null,
+      totalCount: totalCount || false,
     },
   };
 }
