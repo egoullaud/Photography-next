@@ -31,9 +31,7 @@ function NavBar() {
             <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500 p-2 px-4 uppercase">
               <Link href="/">overview</Link>
             </li>
-            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500 p-2 px-4 uppercase">
-              <Link href="/about">about</Link>
-            </li>
+
             <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500 p-2 px-4 uppercase">
               <Link href="/galleries">galleries</Link>
             </li>
@@ -59,9 +57,7 @@ function NavBar() {
             <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500 p-2 px-4 uppercase w-[12rem] text-center">
               <Link href="/">overview</Link>
             </li>
-            <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500 p-2 px-4 uppercase  w-[12rem] text-center">
-              <Link href="/about">about</Link>
-            </li>
+
             <li className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500 p-2 px-4 uppercase">
               <Link href="/galleries">galleries</Link>
             </li>
