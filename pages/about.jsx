@@ -9,7 +9,7 @@ function about({ about }) {
   return (
     <Layout>
       {about.map((about) => (
-        <div>
+        <div className="about">
           <h1
             className=" font-bold uppercase text-3xl text-center my-[2rem] tracking-wider
                         lg:text-5xl lg:my-[4rem] "
