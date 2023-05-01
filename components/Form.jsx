@@ -40,7 +40,7 @@ function Form() {
           required
         ></textarea>
         <button
-          className="border-2 border-[#363636] p-2 shadow-lg my-2 w-[60%] lg:w-[45%] hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-1000 tracking-wide"
+          className="p-2 px-4 w-[12rem] mt-3 uppercase shadow-md bg-[#363636] hover:bg-[#4c4c4c] text-white hover:transition-all hover:duration-500 focus:text-white focus:bg-[#363636] ease-out duration-500 tracking-wide"
           type="submit"
         >
           Let's Connect
