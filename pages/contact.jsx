@@ -33,7 +33,7 @@ export default function contact() {
             >
               {" "}
               <li>
-                <GrFacebook className="text-3xl" />
+                <GrFacebook className="text-3xl hover:scale-110 hover:shadow-lg hover:transition-all hover:duration-500 ease-out duration-500" />
               </li>
             </Link>
             <Link
@@ -42,7 +42,7 @@ export default function contact() {
             >
               {" "}
               <li>
-                <GrInstagram className="text-3xl" />
+                <GrInstagram className="text-3xl hover:scale-110 hover:shadow-lg hover:transition-all hover:duration-500 ease-out duration-500" />
               </li>
             </Link>
           </ul>
