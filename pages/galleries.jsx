@@ -56,7 +56,6 @@ export default function Galleries({
       const results = await fetch("/api/search", {
         method: "POST",
         body: JSON.stringify({
-          nextCursor,
           expression: `folder="${activeFolder}"`,
           // sort_by: "public_id=asc",
         }),
