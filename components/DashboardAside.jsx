@@ -31,7 +31,7 @@ function DashboardAside() {
       </button>
       {isCollapsed && (
         <ul className="flex flex-col items-center justify-center w-[100%]">
-          <Link href="/admin/edit">
+          <Link href="/admin">
             <li className="w-full p-4 text-3xl  hover:bg-[#4c4c4c] hover:transition-all hover:duration-500 ease-out duration-500">
               {" "}
               <FaRegEdit />
@@ -56,7 +56,7 @@ function DashboardAside() {
       {!isCollapsed && (
         <div>
           <ul className="flex flex-col">
-            <Link href="/admin/edit">
+            <Link href="/admin">
               <li className="p-4 flex text-lg border-b-2 border-white  hover:bg-[#4c4c4c] hover:transition-all hover:duration-500 ease-out duration-500">
                 <FaRegEdit className="text-xl mr-2" /> Upload & Edit
               </li>

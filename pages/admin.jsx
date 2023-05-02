@@ -1,5 +1,4 @@
 import UploadAssetForm from "../components/UploadAssetForm";
-import DashboardLayout from "../components/DashboardLayout";
 import React, { useState, useEffect } from "react";
 import { search, mapImageResources, getFolders } from "../lib/cloudinary";
 import {
@@ -12,6 +11,7 @@ import Masonry from "react-masonry-css";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../services/firebase";
 import { useRouter } from "next/router";
+import DashboardAside from "../components/DashboardAside";
 
 export default function Edit({
   images: defaultImages,
@@ -120,97 +120,93 @@ export default function Edit({
   if (user)
     return (
       <div>
-        <DashboardLayout>
-          <UploadAssetForm />
-          <div className="flex flex-col items-center justify-center mb-[1rem]">
-            {/* cloudinary folders */}
+        <DashboardAside />
+        <UploadAssetForm />
+        <div className="flex flex-col items-center justify-center mb-[1rem]">
+          {/* cloudinary folders */}
 
-            <ul
-              onClick={handleOnFolderClick}
-              className="flex justify-center w-[100%] uppercase"
-            >
-              {folders
-                .sort((a, b) => b.name.localeCompare(a.name))
-                .map((folder) => (
-                  <li
-                    className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 focus:text-white focus:bg-[#363636] ease-out duration-500 p-2 px-4"
-                    key={folder.path}
-                  >
-                    <button
-                      data-folder-path={folder.path}
-                      className="uppercase"
-                    >
-                      {folder.name}
-                    </button>
-                  </li>
-                ))}
-            </ul>
-            {/* <button
+          <ul
+            onClick={handleOnFolderClick}
+            className="flex justify-center w-[100%] uppercase"
+          >
+            {folders
+              .sort((a, b) => b.name.localeCompare(a.name))
+              .map((folder) => (
+                <li
+                  className="hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 focus:text-white focus:bg-[#363636] ease-out duration-500 p-2 px-4"
+                  key={folder.path}
+                >
+                  <button data-folder-path={folder.path} className="uppercase">
+                    {folder.name}
+                  </button>
+                </li>
+              ))}
+          </ul>
+          {/* <button
             onClick={handleOnSaveClick}
             className=" font-bold  px-2 border-[#363636] border-[1px] text-xl
            hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500"
           >
             Save
           </button> */}
-            {/* display galleries */}
-            <DragDropContext onDragEnd={handleOnDragEnd}>
-              <Droppable droppableId="images">
-                {(provided) => (
-                  <ol
-                    // className="grid grid-cols-3"
-                    {...provided.droppableProps}
-                    ref={provided.innerRef}
-                    // className="columns-1 md:columns-2 lg:columns-3 gap-2 my-[2rem] mx-2"
+          {/* display galleries */}
+          <DragDropContext onDragEnd={handleOnDragEnd}>
+            <Droppable droppableId="images">
+              {(provided) => (
+                <ol
+                  // className="grid grid-cols-3"
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                  // className="columns-1 md:columns-2 lg:columns-3 gap-2 my-[2rem] mx-2"
+                >
+                  <Masonry
+                    breakpointCols={breakpointColumnsObj}
+                    className="my-masonry-grid mt-5 ml-2"
+                    columnClassName="my-masonry-grid_column"
                   >
-                    <Masonry
-                      breakpointCols={breakpointColumnsObj}
-                      className="my-masonry-grid mt-5 ml-2"
-                      columnClassName="my-masonry-grid_column"
-                    >
-                      {position.map((image, index) => {
-                        return (
-                          <Draggable
-                            key={image.id}
-                            draggableId={image.id}
-                            index={index}
-                          >
-                            {(provided) => (
-                              <li
-                                className="mb-2 mr-2"
-                                {...provided.draggableProps}
-                                {...provided.dragHandleProps}
-                                ref={provided.innerRef}
-                              >
-                                <div>
-                                  <img
-                                    width={image.width}
-                                    height={image.height}
-                                    src={image.image}
-                                    alt=""
-                                  />
-                                </div>
-                              </li>
-                            )}
-                          </Draggable>
-                        );
-                      })}
-                    </Masonry>
-                    {provided.placeholder}
-                  </ol>
-                )}
-              </Droppable>
-            </DragDropContext>
-            {totalCount > images.length && (
-              <button
-                onClick={handleLoadMore}
-                className=" font-bold  px-2 border-[#363636] border-[1px] text-xl
+                    {position.map((image, index) => {
+                      return (
+                        <Draggable
+                          key={image.id}
+                          draggableId={image.id}
+                          index={index}
+                        >
+                          {(provided) => (
+                            <li
+                              className="mb-2 mr-2"
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              ref={provided.innerRef}
+                            >
+                              <div>
+                                <img
+                                  width={image.width}
+                                  height={image.height}
+                                  src={image.image}
+                                  alt=""
+                                />
+                              </div>
+                            </li>
+                          )}
+                        </Draggable>
+                      );
+                    })}
+                  </Masonry>
+                  {provided.placeholder}
+                </ol>
+              )}
+            </Droppable>
+          </DragDropContext>
+          {totalCount > images.length && (
+            <button
+              onClick={handleLoadMore}
+              className=" font-bold  px-2 border-[#363636] border-[1px] text-xl
            hover:bg-[#363636] hover:text-white hover:transition-all hover:duration-500 ease-out duration-500"
-              >
-                Load More
-              </button>
-            )}
-          </div>
-        </DashboardLayout>
+            >
+              Load More
+            </button>
+          )}
+        </div>
       </div>
     );
 }

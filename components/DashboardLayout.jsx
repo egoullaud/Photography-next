@@ -2,11 +2,10 @@ import React from "react";
 import DashboardHeader from "./DashboardHeader";
 import DashboardAside from "./DashboardAside";
 
-function DashboardLayout({ children, categories }) {
+function DashboardLayout({ children }) {
   return (
     <>
-      <DashboardHeader />
-      <DashboardAside categories={categories} />
+      <DashboardAside />
       <main className="ml-[4rem]">{children}</main>
     </>
   );
