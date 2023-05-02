@@ -116,7 +116,7 @@ export default function Edit({
   //firebase auth
 
   if (loading) return <h1>Loading...</h1>;
-  if (!user) route.push("/");
+  if (!user) route.push("/login");
   if (user)
     return (
       <div>
