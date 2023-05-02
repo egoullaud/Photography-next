@@ -7,10 +7,12 @@ import {
   BiChevronsLeft,
 } from "react-icons/bi";
 import { FaRegEdit } from "react-icons/fa";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../services/firebase";
 
 function DashboardAside() {
   const [isCollapsed, setIsCollapsed] = useState(true);
-
+  const [user, loading] = useAuthState(auth);
   const toggleSideBar = () => {
     setIsCollapsed(!isCollapsed);
   };
@@ -42,7 +44,10 @@ function DashboardAside() {
             </li>
           </Link>
 
-          <li className="w-full p-4 text-3xl  hover:bg-[#4c4c4c] hover:transition-all hover:duration-500 ease-out duration-500">
+          <li
+            onClick={() => auth.signOut()}
+            className="w-full p-4 text-3xl  hover:bg-[#4c4c4c] hover:transition-all hover:duration-500 ease-out duration-500"
+          >
             {" "}
             <BiLogOutCircle />
           </li>
@@ -61,7 +66,10 @@ function DashboardAside() {
                 <TiArrowBack className="text-2xl mr-1" /> Back to Website
               </li>
             </Link>
-            <li className=" flex p-4 text-lg border-b-2 border-white   hover:bg-[#4c4c4c] hover:transition-all hover:duration-500 ease-out duration-500">
+            <li
+              onClick={() => auth.signOut()}
+              className=" flex p-4 text-lg border-b-2 border-white   hover:bg-[#4c4c4c] hover:transition-all hover:duration-500 ease-out duration-500"
+            >
               <BiLogOutCircle className="text-2xl mr-1" /> Log Out
             </li>
           </ul>
