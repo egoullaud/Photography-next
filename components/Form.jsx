@@ -5,7 +5,7 @@ function Form() {
     <div className="lg:w-[50%] xl:w-[30%] md:w-[60%] w-[90%]">
       <form
         className="flex flex-col justify-center items-center my-4 w-[100%]"
-        action="https://formsubmit.co/raineg@gmail.com"
+        action="https://formsubmit.co/ff6b3ba91f8c6a2effeabf58b25024e3"
         method="POST"
       >
         {/* <!-- honeypot --> */}
