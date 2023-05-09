@@ -9,7 +9,7 @@ function Form() {
         method="POST"
       >
         {/* <!-- honeypot --> */}
-        <input type="text" name="_honey" style="display:none;" />
+        <input type="text" name="_honey" className="hidden" />
 
         {/* <!-- disable captcha  --> */}
         <input type="hidden" name="_captcha" value="false" />
