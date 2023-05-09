@@ -66,7 +66,7 @@ function Login() {
         <button
           onClick={onSubmit}
           className="p-2 px-4 w-[12rem] mb-[8rem] uppercase shadow-md bg-[#363636] hover:bg-[#4c4c4c] text-white hover:transition-all hover:duration-500 focus:text-white focus:bg-[#363636] ease-out duration-500 tracking-wide"
-          type="submit"
+          type="button"
         >
           Log In
         </button>
