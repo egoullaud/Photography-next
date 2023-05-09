@@ -15,9 +15,8 @@ function formSubmit() {
         work with me
       </h1>
       <div className="flex flex-col justify-center items-center">
-        <p className="text-xl text-center tracking-wider">
-          I would love to hear from you! <br /> Fill out the form below to get
-          in touch with me.
+        <p className="text-xl text-center tracking-wider lg:mb-[10rem] md:mb-[5rem]">
+          Thank you! <br /> Talk to you soon!
         </p>
       </div>
       <div className="flex flex-col md:flex-row justify-center items-center mb-[4rem]">
