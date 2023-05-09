@@ -13,11 +13,11 @@ function Form() {
 
         {/* <!-- disable captcha  --> */}
         <input type="hidden" name="_captcha" value="false" />
-        {/* <input
+        <input
           type="hidden"
           name="_next"
           value="https://rainegauthier.com/formSubmit"
-        /> */}
+        />
         <input
           className="border-2 border-[#363636] p-3 shadow-lg mb-2 w-[100%] tracking-wide"
           type="text"
