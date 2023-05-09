@@ -5,8 +5,19 @@ function Form() {
     <div className="lg:w-[50%] xl:w-[30%] md:w-[60%] w-[90%]">
       <form
         className="flex flex-col justify-center items-center my-4 w-[100%]"
-        action="#"
+        action="https://formsubmit.co/raineg@gmail.com"
+        method="POST"
       >
+        {/* <!-- honeypot --> */}
+        <input type="text" name="_honey" style="display:none;" />
+
+        {/* <!-- disable captcha  --> */}
+        <input type="hidden" name="_captcha" value="false" />
+        {/* <input
+          type="hidden"
+          name="_next"
+          value="https://rainegauthier.com/formSubmit"
+        /> */}
         <input
           className="border-2 border-[#363636] p-3 shadow-lg mb-2 w-[100%] tracking-wide"
           type="text"
